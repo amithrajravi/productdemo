@@ -1,0 +1,9 @@
+Install Release in Local
+
+Explain - Release orchestration
+
+Template / Release / Phase / Task
+
+Configurations
+
+Simple use case to create and run a release.

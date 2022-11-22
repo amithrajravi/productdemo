@@ -1,0 +1,16 @@
+Why it is used?
+
+Automate deployment process
+Make deployments scalable and faster
+Manage multiple infra and env in one place
+
+Setup and infrastructure > Connect it to an enviroment > Deploy your application on that environment
+
+------------
+
+Inform about Nexus for daily builds
+
+how to navigate and download zip file
+
+
+
