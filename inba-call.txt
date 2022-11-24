@@ -1,0 +1,334 @@
+Microsoft Windows [Version 10.0.19045.2251]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Windows\system32>minikube start --driver=virtualbox --memory 22000 --cpus 8 --disk-size 60000mb
+* minikube v1.26.0 on Microsoft Windows 10 Pro 10.0.19045 Build 19045
+* Using the virtualbox driver based on existing profile
+! You cannot change the memory size for an existing minikube cluster. Please first delete the cluster.
+! You cannot change the CPUs for an existing minikube cluster. Please first delete the cluster.
+! You cannot change the disk size for an existing minikube cluster. Please first delete the cluster.
+* Starting control plane node minikube in cluster minikube
+* Restarting existing virtualbox VM for "minikube" ...
+! This VM is having trouble accessing https://k8s.gcr.io
+* To pull new external images, you may need to configure a proxy: https://minikube.sigs.k8s.io/docs/reference/networking/proxy/
+* Preparing Kubernetes v1.24.1 on Docker 20.10.16 ...
+  - Using image kubernetesui/dashboard:v2.6.0
+  - Using image kubernetesui/metrics-scraper:v1.0.8
+  - Using image gcr.io/k8s-minikube/storage-provisioner:v5
+  - Using image gcr.io/k8s-minikube/minikube-ingress-dns:0.0.2
+  - Using image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
+  - Using image k8s.gcr.io/ingress-nginx/controller:v1.2.1
+  - Using image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
+* Verifying Kubernetes components...
+* Verifying ingress addon...
+* Enabled addons: ingress-dns, storage-provisioner, default-storageclass, dashboard, ingress
+
+! C:\Program Files\Docker\Docker\resources\bin\kubectl.exe is version 1.22.5, which may have incompatibilites with Kubernetes 1.24.1.
+  - Want kubectl v1.24.1? Try 'minikube kubectl -- get pods -A'
+* Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+
+C:\Windows\system32>minikube addons enable ingress
+  - Using image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
+  - Using image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
+  - Using image k8s.gcr.io/ingress-nginx/controller:v1.2.1
+* Verifying ingress addon...
+* The 'ingress' addon is enabled
+
+C:\Windows\system32>minikube addons enable ingress-dns
+  - Using image gcr.io/k8s-minikube/minikube-ingress-dns:0.0.2
+* The 'ingress-dns' addon is enabled
+
+C:\Windows\system32>xl kube install
+? Following kubectl context will be used during execution: `minikube`? Yes
+? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned:  [Use arrows t? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned:  [Use arrows t? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned:  [Use arrows t? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: PlainK8s [Plain multi-node K8s cluster]
+? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): No
+? Do you want to create custom Kubernetes namespace digitalai, it does not exist: Yes
+? Product server you want to perform install for:  [Use arrows to move, enter to select, type to filter, ? for more help? Product server you want to perform install for: dai-release [Digital.ai Release]
+? Enter the repository name (eg: <repositoryName> from <repositoryName>/<imageName>:<tagName>): xebialabs
+? Enter the image name (eg: <imageName> from <repositoryName>/<imageName>:<tagName>): xl-release
+? Enter the image tag (eg: <tagName> from <repositoryName>/<imageName>:<tagName>): 22.3.1
+? Enter the release server replica count: 2
+? Enter PVC size for Release (Gi): 8
+? Select between supported Access Modes: ReadWriteMany [ReadWriteMany]
+? Select between supported ingress types: nginx [NGINX]
+? Do you want to enable an TLS/SSL configuration (if yes, requires existing TLS secret in the namespace): No
+? Provide DNS name for accessing UI of the server: release-amith
+? Provide administrator password: admin
+? Type of the OIDC configuration: no-oidc [No OIDC Configuration]
+? Enter the operator image to use (eg: <repositoryName>/<imageName>:<tagName>): xebialabs/release-operator:22.3.1
+? Select source of the license: editor [Copy/Paste the license to editor (the text can be in clean text or base64 encoded)]
+? Provide license for the server: <Received>
+? Select source of the repository keystore: generate [Generate the repository keystore during installation (you need to have keytool utility installed in your path)]
+? Provide keystore passphrase: NuiozLOJiyZEVzEI
+? Provide storage class for the server: standard
+? Do you want to install a new PostgreSQL on the cluster: Yes
+? Provide Storage Class to be defined for PostgreSQL: standard
+? Provide PVC size for PostgreSQL (Gi): 8
+? Do you want to install a new RabbitMQ on the cluster: Yes
+? Replica count to be defined for RabbitMQ: 2
+? Storage Class to be defined for RabbitMQ: standard
+? Provide PVC size for RabbitMQ (Gi): 8
+         -------------------------------- ----------------------------------------------------
+        | LABEL                          | VALUE                                              |
+         -------------------------------- ----------------------------------------------------
+        | AccessModeRelease              | ReadWriteMany                                      |
+        | AdminPassword                  | admin                                              |
+        | CleanBefore                    | false                                              |
+        | CreateNamespace                | true                                               |
+        | EnableIngressTls               | false                                              |
+        | EnablePostgresql               | true                                               |
+        | EnableRabbitmq                 | true                                               |
+        | ExternalOidcConf               | external: false                                    |
+        | GenerationDateTime             | 20221117-131150                                    |
+        | ImageNameRelease               | xl-release                                         |
+        | ImageTag                       | 22.3.1                                             |
+        | IngressHost                    | release-amith                                      |
+        | IngressType                    | nginx                                              |
+        | K8sSetup                       | PlainK8s                                           |
+        | KeystorePassphrase             | NuiozLOJiyZEVzEI                                   |
+        | License                        | LS0tIExpY2Vuc2UgLS0tDQpMaWNlbnNlIHZlcnNpb246IDQN.. |
+        | LicenseEditor                  | --- License ---\r\nLicense version: 4\r\nProduct.. |
+        | LicenseSource                  | editor                                             |
+        | OidcConfigType                 | no-oidc                                            |
+        | OidcConfigTypeInstall          | no-oidc                                            |
+        | OperatorImageReleaseGeneric    | xebialabs/release-operator:22.3.1                  |
+        | OsType                         | windows                                            |
+        | PostgresqlPvcSize              | 8                                                  |
+        | PostgresqlStorageClass         | standard                                           |
+        | ProcessType                    | install                                            |
+        | PvcSizeRelease                 | 8                                                  |
+        | RabbitmqPvcSize                | 8                                                  |
+        | RabbitmqReplicaCount           | 2                                                  |
+        | RabbitmqStorageClass           | standard                                           |
+        | RepositoryKeystoreSource       | generate                                           |
+        | RepositoryName                 | xebialabs                                          |
+        | ServerType                     | dai-release                                        |
+        | ShortServerName                | xlr                                                |
+        | StorageClass                   | standard                                           |
+        | UseCustomNamespace             | false                                              |
+        | XlrReplicaCount                | 2                                                  |
+         -------------------------------- ----------------------------------------------------
+? Do you want to proceed to the deployment with these values? Yes
+For current process files will be generated in the: ←[1;36mdigitalai/dai-release/digitalai/20221117-131150/kubernetes←[0m
+Generated answers file successfully: ←[1;36mdigitalai\generated_answers_dai-release_digitalai_install-20221117-131150.yaml←[0m
+Starting install processing.
+Created keystore ←[1;36mdigitalai/dai-release/digitalai/20221117-131150/kubernetes/repository-keystore.jceks←[0m
+Created namespace ←[1;36mdigitalai←[0m
+Generated files successfully for PlainK8s installation.
+←[1;32mApplying resources to the cluster!
+Applied resource ←[1;36mclusterrole←[0m/←[1;36mxlr-operator-proxy-role←[0m from the file digitalai\dai-release\digitalai\20221117-131150\kubernetes\template\cluster-role-digital-proxy-role.yaml
+Applied resource ←[1;36mclusterrole←[0m/←[1;36mxlr-operator-manager-role←[0m from the file digitalai\dai-release\digitalai\20221117-131150\kubernetes\template\cluster-role-manager-role.yaml
+Applied resource ←[1;36mclusterrole←[0m/←[1;36mxlr-operator-metrics-reader←[0m from the file digitalai\dai-release\digitalai\20221117-131150\kubernetes\template\cluster-role-metrics-reader.yaml
+Applied resource ←[1;36mservice←[0m/←[1;36mxlr-operator-controller-manager-metrics-service←[0m from the file digitalai\dai-release\digitalai\20221117-131150\kubernetes\template\controller-manager-metrics-service.yaml
+Applied resource ←[1;36mcustomresourcedefinition←[0m/←[1;36mdigitalaireleases.xlr.digital.ai←[0m from the file digitalai\dai-release\digitalai\20221117-131150\kubernetes\template\custom-resource-definition.yaml
+Applied resource ←[1;36mdeployment←[0m/←[1;36mxlr-operator-controller-manager←[0m from the file digitalai\dai-release\digitalai\20221117-131150\kubernetes\template\deployment.yaml
+Applied resource ←[1;36mrole←[0m/←[1;36mxlr-operator-leader-election-role←[0m from the file digitalai\dai-release\digitalai\20221117-131150\kubernetes\template\leader-election-role.yaml
+Applied resource ←[1;36mrolebinding←[0m/←[1;36mxlr-operator-leader-election-rolebinding←[0m from the file digitalai\dai-release\digitalai\20221117-131150\kubernetes\template\leader-election-rolebinding.yaml
+Applied resource ←[1;36mclusterrolebinding←[0m/←[1;36mxlr-operator-manager-rolebinding←[0m from the file digitalai\dai-release\digitalai\20221117-131150\kubernetes\template\manager-rolebinding.yaml
+Applied resource ←[1;36mclusterrolebinding←[0m/←[1;36mxlr-operator-proxy-rolebinding←[0m from the file digitalai\dai-release\digitalai\20221117-131150\kubernetes\template\proxy-rolebinding.yaml
+Applied resource ←[1;36mdigitalairelease←[0m/←[1;36mdai-xlr←[0m from the file digitalai/dai-release/digitalai/20221117-131150/kubernetes/dai-release_cr.yaml
+←[1;32mInstall finished successfully!
+←[0m
+C:\Windows\system32>kubectl get all -n digitalai
+NAME                                                  READY   STATUS              RESTARTS   AGE
+pod/xlr-operator-controller-manager-5787d577c-t2q8s   0/2     ContainerCreating   0          77s
+
+NAME                                                      TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+service/xlr-operator-controller-manager-metrics-service   ClusterIP   10.97.173.67   <none>        8443/TCP   91s
+
+NAME                                              READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/xlr-operator-controller-manager   0/1     1            0           77s
+
+NAME                                                        DESIRED   CURRENT   READY   AGE
+replicaset.apps/xlr-operator-controller-manager-5787d577c   1         1         0       77s
+
+C:\Windows\system32>kubectl get all -n digitalai
+NAME                                                                  READY   STATUS              RESTARTS   AGE
+pod/dai-xlr-digitalai-release-0                                       0/1     Init:0/2            0          4m56s
+pod/dai-xlr-nginx-ingress-controller-7df6cb88d5-7twfk                 0/1     ContainerCreating   0          4m56s
+pod/dai-xlr-nginx-ingress-controller-default-backend-5fbbdf4d85t5qh   1/1     Running             0          4m56s
+pod/dai-xlr-postgresql-0                                              0/1     ImagePullBackOff    0          4m55s
+pod/dai-xlr-rabbitmq-0                                                0/1     Init:0/1            0          4m55s
+pod/dai-xlr-rabbitmq-1                                                0/1     Init:0/1            0          4m55s
+pod/xlr-operator-controller-manager-5787d577c-t2q8s                   2/2     Running             0          7m51s
+
+NAME                                                       TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                                 AGE
+service/dai-xlr-digitalai-release                          ClusterIP      10.104.78.210    <none>        80/TCP                                  4m57s
+service/dai-xlr-nginx-ingress-controller                   LoadBalancer   10.109.249.150   <pending>     80:32408/TCP,443:31206/TCP              4m56s
+service/dai-xlr-nginx-ingress-controller-default-backend   ClusterIP      10.102.179.10    <none>        80/TCP                                  4m56s
+service/dai-xlr-postgresql                                 ClusterIP      10.104.164.209   <none>        5432/TCP                                4m57s
+service/dai-xlr-postgresql-headless                        ClusterIP      None             <none>        5432/TCP                                4m57s
+service/dai-xlr-rabbitmq                                   ClusterIP      10.109.88.202    <none>        5672/TCP,4369/TCP,25672/TCP,15672/TCP   4m56s
+service/dai-xlr-rabbitmq-headless                          ClusterIP      None             <none>        4369/TCP,5672/TCP,25672/TCP,15672/TCP   4m57s
+service/xlr-operator-controller-manager-metrics-service    ClusterIP      10.97.173.67     <none>        8443/TCP                                8m5s
+
+NAME                                                               READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/dai-xlr-nginx-ingress-controller                   0/1     1            0           4m56s
+deployment.apps/dai-xlr-nginx-ingress-controller-default-backend   1/1     1            1           4m56s
+deployment.apps/xlr-operator-controller-manager                    1/1     1            1           7m51s
+
+NAME                                                                          DESIRED   CURRENT   READY   AGE
+replicaset.apps/dai-xlr-nginx-ingress-controller-7df6cb88d5                   1         1         0       4m56s
+replicaset.apps/dai-xlr-nginx-ingress-controller-default-backend-5fbbdf4d85   1         1         1       4m56s
+replicaset.apps/xlr-operator-controller-manager-5787d577c                     1         1         1       7m51s
+
+NAME                                         READY   AGE
+statefulset.apps/dai-xlr-digitalai-release   0/2     4m56s
+statefulset.apps/dai-xlr-postgresql          0/1     4m56s
+statefulset.apps/dai-xlr-rabbitmq            0/2     4m56s
+
+C:\Windows\system32>kubectl describe pod/dai-xlr-postgresql-0 -n digitalai
+Name:         dai-xlr-postgresql-0
+Namespace:    digitalai
+Priority:     0
+Node:         minikube/192.168.59.100
+Start Time:   Thu, 17 Nov 2022 13:28:35 +0530
+Labels:       app.kubernetes.io/component=primary
+              app.kubernetes.io/instance=dai-xlr
+              app.kubernetes.io/managed-by=Helm
+              app.kubernetes.io/name=postgresql
+              controller-revision-hash=dai-xlr-postgresql-b4c598f84
+              helm.sh/chart=postgresql-10.12.8
+              role=primary
+              statefulset.kubernetes.io/pod-name=dai-xlr-postgresql-0
+Annotations:  <none>
+Status:       Pending
+IP:           172.17.0.12
+IPs:
+  IP:           172.17.0.12
+Controlled By:  StatefulSet/dai-xlr-postgresql
+Containers:
+  dai-xlr-postgresql:
+    Container ID:
+    Image:          docker.io/bitnami/postgresql:11.13.0-debian-10-r73
+    Image ID:
+    Port:           5432/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       ImagePullBackOff
+    Ready:          False
+    Restart Count:  0
+    Requests:
+      cpu:      250m
+      memory:   256Mi
+    Liveness:   exec [/bin/sh -c exec pg_isready -U "postgres" -h 127.0.0.1 -p 5432] delay=30s timeout=5s period=10s #success=1 #failure=6
+    Readiness:  exec [/bin/sh -c -e exec pg_isready -U "postgres" -h 127.0.0.1 -p 5432
+[ -f /opt/bitnami/postgresql/tmp/.initialized ] || [ -f /bitnami/postgresql/.initialized ]
+] delay=5s timeout=5s period=10s #success=1 #failure=6
+    Environment:
+      BITNAMI_DEBUG:                        false
+      POSTGRESQL_PORT_NUMBER:               5432
+      POSTGRESQL_VOLUME_DIR:                /bitnami/postgresql
+      PGDATA:                               /bitnami/postgresql/data
+      POSTGRES_USER:                        postgres
+      POSTGRES_PASSWORD:                    <set to the key 'postgresql-password' in secret 'dai-xlr-postgresql'>  Optional: false
+      POSTGRESQL_ENABLE_LDAP:               no
+      POSTGRESQL_ENABLE_TLS:                no
+      POSTGRESQL_LOG_HOSTNAME:              false
+      POSTGRESQL_LOG_CONNECTIONS:           false
+      POSTGRESQL_LOG_DISCONNECTIONS:        false
+      POSTGRESQL_PGAUDIT_LOG_CATALOG:       off
+      POSTGRESQL_CLIENT_MIN_MESSAGES:       error
+      POSTGRESQL_SHARED_PRELOAD_LIBRARIES:  pgaudit
+      POSTGRESQL_MAX_CONNECTIONS:           150
+    Mounts:
+      /bitnami/postgresql from data (rw)
+      /dev/shm from dshm (rw)
+      /docker-entrypoint-initdb.d/secret from custom-init-scripts-secret (rw)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             False
+  ContainersReady   False
+  PodScheduled      True
+Volumes:
+  data:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  data-dai-xlr-postgresql-0
+    ReadOnly:   false
+  custom-init-scripts-secret:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  postgresql-init-sql-xlr
+    Optional:    false
+  dshm:
+    Type:        EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:      Memory
+    SizeLimit:   <unset>
+QoS Class:       Burstable
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason            Age                    From               Message
+  ----     ------            ----                   ----               -------
+  Warning  FailedScheduling  7m52s                  default-scheduler  0/1 nodes are available: 1 pod has unbound immediate PersistentVolumeClaims. preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.
+  Normal   Scheduled         7m50s                  default-scheduler  Successfully assigned digitalai/dai-xlr-postgresql-0 to minikube
+  Warning  Failed            5m44s                  kubelet            Failed to pull image "docker.io/bitnami/postgresql:11.13.0-debian-10-r73": rpc error: code = Unknown desc = context deadline exceeded
+  Warning  Failed            5m44s                  kubelet            Error: ErrImagePull
+  Normal   BackOff           5m44s                  kubelet            Back-off pulling image "docker.io/bitnami/postgresql:11.13.0-debian-10-r73"
+  Warning  Failed            5m44s                  kubelet            Error: ImagePullBackOff
+  Normal   Pulling           5m30s (x2 over 7m43s)  kubelet            Pulling image "docker.io/bitnami/postgresql:11.13.0-debian-10-r73"
+
+C:\Windows\system32>xl kube clean -S
+? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned:  [Use arrows to move, enter to select, type to filter, ? for more ? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned:  [Use arrows to move, enter to select, type to filter, ? for more ? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned:  [Use arrows to move, enter to select, type to filter, ? for more ? Select the Kubernetes setup where the Digital.ai Devops Platform will be installed, updated or cleaned: PlainK8s [Plain multi-node K8s cluster]
+? Do you want to use an custom Kubernetes namespace (current default is 'digitalai'): No
+? Product server you want to perform clean for: dai-release [Digital.ai Release]
+? Enter the name of custom resource definition you want to reuse or replace: digitalaireleases.xlr.digital.ai
+? Should CRD be reused, if No we will delete the CRD digitalaireleases.xlr.digital.ai, and all related CRs will be deleted with it: No
+? Enter the name of custom resource: dai-xlr
+? Should we preserve persisted volume claims? If not all volume data will be lost: No
+         -------------------------------- ----------------------------------------------------
+        | LABEL                          | VALUE                                              |
+         -------------------------------- ----------------------------------------------------
+        | CleanBefore                    | false                                              |
+        | CrName                         | dai-xlr                                            |
+        | CrdName                        | digitalaireleases.xlr.digital.ai                   |
+        | CreateNamespace                | true                                               |
+        | ExternalOidcConf               | external: false                                    |
+        | GenerationDateTime             | 20221117-134050                                    |
+        | IngressType                    | none                                               |
+        | IsCrdReused                    | false                                              |
+        | K8sSetup                       | PlainK8s                                           |
+        | OidcConfigType                 | existing                                           |
+        | OsType                         | windows                                            |
+        | PreservePvc                    | false                                              |
+        | ProcessType                    | clean                                              |
+        | ServerType                     | dai-release                                        |
+        | ShortServerName                | xlr                                                |
+        | UseCustomNamespace             | false                                              |
+         -------------------------------- ----------------------------------------------------
+For current process files will be generated in the: ←[1;36mdigitalai/dai-release/digitalai/20221117-134050/kubernetes←[0m
+Generated answers file successfully: ←[1;36mdigitalai\generated_answers_dai-release_digitalai_clean-20221117-134050.yaml←[0m
+←[1;32mCleaning the resources on the cluster!
+CR ←[1;36mdai-xlr←[0m is available, deleting
+Deleted ←[1;36mdigitalaireleases.xlr.digital.ai←[0m/←[1;36mdai-xlr←[0m from namespace ←[1;36mdigitalai←[0m
+CRD ←[1;36mdigitalaireleases.xlr.digital.ai←[0m is available, deleting
+Deleted ←[1;36mcrd←[0m/←[1;36mdigitalaireleases.xlr.digital.ai←[0m from namespace ←[1;36mdigitalai←[0m
+Deleted ←[1;36mcrd←[0m/←[1;36mdigitalaireleases.xlr.digital.ai←[0m from namespace ←[1;36mdigitalai←[0m (already deleted)
+Deleting statefulsets
+Deleting deployments
+Deleted ←[1;36mdeployment←[0m/←[1;36mxlr-operator-controller-manager←[0m from namespace ←[1;36mdigitalai←[0m
+Deleting jobs
+Deleting services
+Deleted ←[1;36msvc←[0m/←[1;36mxlr-operator-controller-manager-metrics-service←[0m from namespace ←[1;36mdigitalai←[0m
+Deleting secrets
+Deleted ←[1;36mingressclass←[0m/←[1;36mnginx-dai-xlr←[0m from namespace ←[1;36mdigitalai←[0m
+Deleting roles
+Deleted ←[1;36mrole←[0m/←[1;36mxlr-operator-leader-election-role←[0m from namespace ←[1;36mdigitalai←[0m
+Deleted ←[1;36mclusterrole←[0m/←[1;36mxlr-operator-manager-role←[0m from namespace ←[1;36mdigitalai←[0m
+Deleted ←[1;36mclusterrole←[0m/←[1;36mxlr-operator-metrics-reader←[0m from namespace ←[1;36mdigitalai←[0m
+Deleted ←[1;36mclusterrole←[0m/←[1;36mxlr-operator-proxy-role←[0m from namespace ←[1;36mdigitalai←[0m
+Deleted ←[1;36mclusterrole←[0m/←[1;36mdai-xlr-nginx-ingress-controller←[0m from namespace ←[1;36mdigitalai←[0m
+Deleted ←[1;36mrolebinding←[0m/←[1;36mxlr-operator-leader-election-rolebinding←[0m from namespace ←[1;36mdigitalai←[0m
+Deleted ←[1;36mclusterrolebinding←[0m/←[1;36mxlr-operator-manager-rolebinding←[0m from namespace ←[1;36mdigitalai←[0m
+Deleted ←[1;36mclusterrolebinding←[0m/←[1;36mxlr-operator-proxy-rolebinding←[0m from namespace ←[1;36mdigitalai←[0m
+Deleted ←[1;36mclusterrolebinding←[0m/←[1;36mdai-xlr-nginx-ingress-controller←[0m from namespace ←[1;36mdigitalai←[0m
+Deleting PVCs
+Deleted ←[1;36mpvc←[0m/←[1;36mdai-xlr-digitalai-release←[0m from namespace ←[1;36mdigitalai←[0m
+Deleted ←[1;36mpvc←[0m/←[1;36mdata-dai-xlr-postgresql-0←[0m from namespace ←[1;36mdigitalai←[0m
+Deleted ←[1;36mpvc←[0m/←[1;36mdata-dai-xlr-rabbitmq-0←[0m from namespace ←[1;36mdigitalai←[0m
+Deleted ←[1;36mpvc←[0m/←[1;36mdata-dai-xlr-rabbitmq-1←[0m from namespace ←[1;36mdigitalai←[0m
+←[1;32mClean finished successfully!
+←[0m
+C:\Windows\system32>
+C:\Windows\system32>
